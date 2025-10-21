@@ -9,7 +9,7 @@ Solution Architecture
 The architecture is entirely serverless and event-driven. It follows a simple, robust workflow that ensures data is processed immediately upon arrival.
 
 <!-- Add your architecture diagram screenshot here. A simple diagram showing S3 -> Lambda -> S3 would be perfect. -->
-
+![Pipeline Image](ETL%20images/pipeline%20image.png)
 
 
 
@@ -59,11 +59,11 @@ Project Setup and Configuration
 1. S3 Bucket Creation
 Two S3 buckets are required: one for raw data and one for the processed output.
 
+![Bucket](ETL%20images/Bucket.png)
 
+![Bucket json file](ETL%20images/JSON.png)
 
-
-
-
+![ucket Parquet FileB](ETL%20images/Parquet.png)
 <!-- Add a screenshot of your S3 buckets in the AWS console. -->
 
 2. IAM Role for Lambda
@@ -79,7 +79,7 @@ Custom S3 Policy: An inline policy was added to grant s3:GetObject permissions o
 3. Lambda Function Setup
 The Lambda function is configured with the Python 3.9 runtime and linked to the IAM role created above. The code, along with its dependencies (Pandas, PyArrow), is packaged into a ZIP file and uploaded as a Lambda layer or directly.
 
-
+![Function setup](ETL%20images/added%20layer.png)
 <!-- Add a screenshot of your Lambda function's main configuration page. -->
 
 4. S3 Trigger Configuration
@@ -90,7 +90,7 @@ An S3 trigger is added to the Lambda function, pointing to the raw-data bucket. 
 Code Overview
 The core logic is contained within the lambda_function.py script.
 
-
+![Code Overview](ETL%20images/Code.png)
 
 lambda_handler(event, context): This is the main entry point. It parses the S3 event to get the bucket name and object key, reads the file using boto3, and calls the transformation function.
 
